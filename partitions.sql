@@ -20,3 +20,11 @@ CREATE TABLE IF NOT EXISTS prices (
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
 TBLPROPERTIES ("skip.header.line.count"="1");
 DESCRIBE prices;
+
+LOAD DATA INPATH '/user/gontse/data/financial/prices/'
+OVERWRITE INTO TABLE prices;
+
+SELECT ticker, COUNT(*) 
+FROM prices 
+GROUP BY ticker
+LIMIT 30;
